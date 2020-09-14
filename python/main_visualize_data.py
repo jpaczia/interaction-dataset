@@ -145,8 +145,8 @@ if __name__ == "__main__":
     fig.canvas.set_window_title("Interaction Dataset Visualization")
 
     # load and draw the lanelet2 map, either with or without the lanelet2 library
-    lat_origin = 0.  # origin is necessary to correctly project the lat lon values in the osm file to the local
-    lon_origin = 0.  # coordinates in which the tracks are provided; we decided to use (0|0) for every scenario
+    lat_origin = 49.  # origin is necessary to correctly project the lat lon values in the osm file to the local
+    lon_origin = 8.4  # coordinates in which the tracks are provided; we decided to use (0|0) for every scenario
     print("Loading map...")
     if use_lanelet2_lib:
         projector = lanelet2.projection.UtmProjector(lanelet2.io.Origin(lat_origin, lon_origin))
