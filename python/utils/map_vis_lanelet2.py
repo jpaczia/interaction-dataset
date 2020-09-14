@@ -65,10 +65,11 @@ def draw_lanelet_map(laneletmap, axes):
         elif ls.attributes["type"] == "building":
             type_dict = dict(color="pink", zorder=1, linewidth=5)
         elif ls.attributes["type"] == "spawnline":
+            group_id = str(ls.attributes["spawn_group"])
             if ls.attributes["spawn_type"] == "start":
-                type_dict = dict(color="green", zorder=11, linewidth=2)
+                type_dict = dict(color="green", zorder=11, linewidth=2, label="start")
             elif ls.attributes["spawn_type"] == "end":
-                type_dict = dict(color="red", zorder=11, linewidth=2)
+                type_dict = dict(color="red", zorder=11, linewidth=2, label="end")
 
         else:
             if ls.attributes["type"] not in unknown_linestring_types:
