@@ -106,8 +106,8 @@ if __name__ == "__main__":
     # i.e. the root directory of this project
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    tracks_dir = os.path.join(root_dir, "recorded_trackfiles")
-    maps_dir = os.path.join(root_dir, "maps")
+    tracks_dir = os.path.realpath(os.path.join(root_dir, "recorded_trackfiles"))
+    maps_dir = os.path.realpath(os.path.join(root_dir, "maps"))
 
     lanelet_map_ending = ".osm"
     lanelet_map_file = os.path.join(maps_dir, args.scenario_name + lanelet_map_ending)
