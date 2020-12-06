@@ -102,7 +102,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("scenario_name", type=str, help="Name of the scenario (to identify map and folder for track "
                         "files)", nargs="?")
-    parser.add_argument("track_file_number", type=int, help="Number of the track file (int)", default=0, nargs="?")
+    parser.add_argument("track_file_number", type=str, help="Number of the track file (int)", default=0, nargs="?")
     parser.add_argument("load_mode", type=str, help="Dataset to load (vehicle, pedestrian, or both)", default="both",
                         nargs="?")
     parser.add_argument("--start_timestamp", type=int, nargs="?")
@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
     track_file_name = os.path.join(
         scenario_dir,
-        "vehicle_tracks_" + str(args.track_file_number).zfill(3) + ".csv"
+        "vehicle_tracks_" + str(args.track_file_number).zfill(7) + ".csv"
     )
     pedestrian_file_name = os.path.join(
         scenario_dir,
