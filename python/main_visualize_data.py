@@ -25,14 +25,27 @@ from utils import tracks_vis
 from utils import dict_utils
 
 
+def get_frame_id():
+    global track_dictionary, timestamp
+
+    result = None
+    if track_dictionary is not None:
+        for key, track in dict_utils.get_item_iterator(track_dictionary):
+            if timestamp in track.motion_states.keys():
+                result = track.motion_states[timestamp].frame_id
+
+    return result
+
 def update_plot():
     global fig, timestamp, title_text, track_dictionary, patches_dict, text_dict, axes, pedestrian_dictionary
     # update text and tracks based on current timestamp
     assert(timestamp <= timestamp_max), "timestamp=%i" % timestamp
     assert(timestamp >= timestamp_min), "timestamp=%i" % timestamp
-    assert(timestamp % dataset_types.DELTA_TIMESTAMP_MS == 0), "timestamp=%i" % timestamp
+    assert(timestamp % DELTA_TIMESTAMP_MS == 0), "timestamp=%i" % timestamp
     percentage = (float(timestamp) / timestamp_max) * 100
-    title_text.set_text("\nts = {} / {} ({:.2f}%)".format(timestamp, timestamp_max, percentage))
+    frame_id = get_frame_id()
+    title_text.set_text("\nframe_id:{}\nts = {} / {} ({:.2f}%)".format(
+        frame_id, timestamp, timestamp_max, percentage))
     tracks_vis.update_objects_plot(timestamp, patches_dict, text_dict, axes,
                                    track_dict=track_dictionary, pedest_dict=pedestrian_dictionary)
     fig.canvas.draw()

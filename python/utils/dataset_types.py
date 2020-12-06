@@ -13,6 +13,7 @@ class MotionState:
         self.vx = None
         self.vy = None
         self.psi_rad = None
+        self.frame_id = None
 
     def __str__(self):
         return "MotionState: " + str(self.__dict__)

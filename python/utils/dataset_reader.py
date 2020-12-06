@@ -64,6 +64,7 @@ def read_tracks(filename):
                 assert(track_id not in track_dict.keys()), \
                     "Line %i: Track id %i already in dict, track file not sorted properly" % (i+1, track_id)
                 track = Track(track_id)
+                track.frame_id = int(row[KeyEnum.frame_id])
                 track.agent_type = row[KeyEnum.agent_type]
                 track.length = float(row[KeyEnum.length])
                 track.width = float(row[KeyEnum.width])
@@ -79,6 +80,7 @@ def read_tracks(filename):
             ms.vx = float(row[KeyEnum.vx])
             ms.vy = float(row[KeyEnum.vy])
             ms.psi_rad = float(row[KeyEnum.psi_rad])
+            ms.frame_id =int(row[KeyEnum.frame_id])
             track.motion_states[ms.time_stamp_ms] = ms
 
         return track_dict
