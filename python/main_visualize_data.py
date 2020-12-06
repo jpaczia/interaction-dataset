@@ -24,6 +24,7 @@ from utils import map_vis_lanelet2
 from utils import tracks_vis
 from utils import dict_utils
 
+DELTA_TIMESTAMP_MS = 300
 
 def get_frame_id():
     global track_dictionary, timestamp
@@ -56,12 +57,12 @@ def start_playback():
     playback_stopped = False
     plt.ion()
     while timestamp < timestamp_max and not playback_stopped:
-        timestamp += dataset_types.DELTA_TIMESTAMP_MS
+        timestamp += DELTA_TIMESTAMP_MS
         start_time = time.time()
         update_plot()
         end_time = time.time()
         diff_time = end_time - start_time
-        plt.pause(max(0.001, dataset_types.DELTA_TIMESTAMP_MS / 1000. - diff_time))
+        plt.pause(max(0.001, DELTA_TIMESTAMP_MS / 1000. - diff_time))
     plt.ioff()
 
 
@@ -83,13 +84,13 @@ class FrameControlButton(object):
                 return
         playback_stopped = True
         if self.label == "<<":
-            timestamp -= 10*dataset_types.DELTA_TIMESTAMP_MS
+            timestamp -= 10*DELTA_TIMESTAMP_MS
         elif self.label == "<":
-            timestamp -= dataset_types.DELTA_TIMESTAMP_MS
+            timestamp -= DELTA_TIMESTAMP_MS
         elif self.label == ">":
-            timestamp += dataset_types.DELTA_TIMESTAMP_MS
+            timestamp += DELTA_TIMESTAMP_MS
         elif self.label == ">>":
-            timestamp += 10*dataset_types.DELTA_TIMESTAMP_MS
+            timestamp += 10*DELTA_TIMESTAMP_MS
         timestamp = min(timestamp, timestamp_max)
         timestamp = max(timestamp, timestamp_min)
         update_plot()
