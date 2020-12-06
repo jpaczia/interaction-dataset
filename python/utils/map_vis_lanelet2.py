@@ -70,6 +70,8 @@ def draw_lanelet_map(laneletmap, axes):
                 type_dict = dict(color="green", zorder=11, linewidth=2, label="start")
             elif ls.attributes["spawn_type"] == "end":
                 type_dict = dict(color="red", zorder=11, linewidth=2, label="end")
+        elif ls.attributes["type"] == "trigger_line":
+            type_dict = dict(color="cyan", linewidth=1, zorder=10)
 
         else:
             if ls.attributes["type"] not in unknown_linestring_types:
